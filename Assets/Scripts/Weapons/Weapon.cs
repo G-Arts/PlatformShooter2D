@@ -9,7 +9,7 @@ public abstract class Weapon : MonoBehaviour
     [SerializeField] protected float _weaponDamage = 10f;
     [SerializeField] protected float _weaponKnockBack = 3f;
 
-    public abstract void Fire();
+    public abstract void Fire(GameObject Player);
 
     protected void flip()
     {

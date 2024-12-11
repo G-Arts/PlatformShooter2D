@@ -45,7 +45,7 @@ public class Gun : Weapon
         Debug.Log("Reload oldu !!!");
     }
 
-    public override void Fire()
+    public override void Fire(GameObject Player)
     {
         if (!canIFire()) return;
 
@@ -55,11 +55,16 @@ public class Gun : Weapon
         {
             isEmpty = true;
             gunSpriteRenderer.sprite = gunSpriteEmpty;
-        } 
+        }
+
+        int layerToIgnore = 1 << Player.layer; // Karakterin kendi Layer'ý
+        int layerMask = ~layerToIgnore;
+
         var hit = Physics2D.Raycast(
             _gunPoint.position,
             transform.right,
-            _weaponRange);
+            _weaponRange,
+            layerMask);
 
         var trail = Instantiate(
             _bulletTrail,

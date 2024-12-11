@@ -10,7 +10,7 @@ public class ShotGun : Gun
     {
         _damagePerBullet = (int)Mathf.Round(_weaponDamage / shotBulletCount);
     }
-    public override void Fire()
+    public override void Fire(GameObject Player)
     {
         if (!canIFire()) return;
 
@@ -23,6 +23,9 @@ public class ShotGun : Gun
             gunSpriteRenderer.sprite = gunSpriteEmpty;
         }
 
+        int layerToIgnore = 1 << Player.layer; // Karakterin kendi Layer'ý
+        int layerMask = ~layerToIgnore;
+
         for (int i = 0; i < shotBulletCount; i++) // istediðimiz adet mermi
         {
             // Rastgele bir sapma açýsý hesapla (-10 derece ile 10 derece arasýnda)
@@ -30,7 +33,7 @@ public class ShotGun : Gun
             Vector3 direction = Quaternion.Euler(0, 0, randomOffset) * transform.right;
 
             // Raycast iþlemi
-            var hit = Physics2D.Raycast(_gunPoint.position, direction, _weaponRange);
+            var hit = Physics2D.Raycast(_gunPoint.position, direction, _weaponRange, layerMask);
 
             // Mermi izi (trail) oluþtur
             var trail = Instantiate(_bulletTrail, _gunPoint.position, transform.rotation);

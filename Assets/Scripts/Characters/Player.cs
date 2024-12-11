@@ -67,7 +67,7 @@ public class Player : Character
     {
         if (Input.GetMouseButton(0) && equippedWeapon != null)
         {
-            equippedWeapon.Fire();
+            equippedWeapon.Fire(gameObject);
         }
     }
 
