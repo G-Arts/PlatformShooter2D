@@ -1,0 +1,59 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Weapons
+  m_EditorClassIdentifier: 
+  m_GroupName: Weapons
+  m_GUID: 47cd0f19539e17a4dbda88b6513268ae
+  m_SerializeEntries:
+  - m_GUID: 13e428fa475d6924e9f54577c59004e9
+    m_Address: Assets/Prefabs/Weapons/Deagle.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Deagle
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 195cb9b17bc63084f9011502d8edb85a
+    m_Address: Assets/Prefabs/Weapons/AWP.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - AWP
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3f6c51ab28bf7114181dc42b6e67b726
+    m_Address: Assets/Prefabs/Weapons/M4A4.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - M4A4
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 95eed8c189446e6499ce64c9b0ca46a2
+    m_Address: Assets/Prefabs/Weapons/Glock.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Glock
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9c9292f601e0aa34faead7d0cba97ef4
+    m_Address: Assets/Prefabs/Weapons/SawedOff.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sawed-Off
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: aa4ac44349f12bf41b50086ac1191da6
+    m_Address: Assets/Prefabs/Weapons/AK-47.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - AK-47
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: d848fb7f01a719e4b90b036d44afecce, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: e3fd5ac301a06ca418c1b7245b326b6a, type: 2}
+    - {fileID: 11400000, guid: f39eb76584b414a438d803f511845ab8, type: 2}
