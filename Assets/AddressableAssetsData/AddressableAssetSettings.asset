@@ -15,7 +15,7 @@ MonoBehaviour:
   m_DefaultGroup: f5122eb2d71c7b743b29630420d66c44
   m_currentHash:
     serializedVersion: 2
-    Hash: 20be08d950621a2ffd55e6a474fe8e47
+    Hash: 32b2f417cc67327d437b1db12b65cea2
   m_OptimizeCatalogSize: 0
   m_BuildRemoteCatalog: 0
   m_CatalogRequestsTimeout: 0
@@ -107,6 +107,7 @@ MonoBehaviour:
     - Sawed-Off
     - AWP
     - Deagle
+    - LaserGun
   m_SchemaTemplates: []
   m_GroupTemplateObjects:
   - {fileID: 11400000, guid: 9d553b668b2729540b021adf05fbe12b, type: 2}

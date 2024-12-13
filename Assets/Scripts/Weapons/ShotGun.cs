@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class ShotGun : Gun
+public class ShotGun : NormalGun
 {
     [SerializeField] int shotBulletCount = 6;
 
@@ -33,10 +33,10 @@ public class ShotGun : Gun
             Vector3 direction = Quaternion.Euler(0, 0, randomOffset) * transform.right;
 
             // Raycast iþlemi
-            var hit = Physics2D.Raycast(_gunPoint.position, direction, _weaponRange, layerMask);
+            var hit = Physics2D.Raycast(_gunFirePoint.position, direction, _weaponRange, layerMask);
 
             // Mermi izi (trail) oluþtur
-            var trail = Instantiate(_bulletTrail, _gunPoint.position, transform.rotation);
+            var trail = Instantiate(_bulletTrail, _gunFirePoint.position, transform.rotation);
             var trailScript = trail.GetComponent<BulletTrail>();
 
             if (hit.collider != null)
@@ -55,7 +55,7 @@ public class ShotGun : Gun
             else
             {
                 // Eðer hedef yoksa, mermi izini maksimum menzile kadar çiz
-                var endPosition = _gunPoint.position + direction * _weaponRange;
+                var endPosition = _gunFirePoint.position + direction * _weaponRange;
                 trailScript.SetTargetPosition(endPosition);
             }
         }

@@ -6,6 +6,7 @@ public class Player : Character
     [SerializeField] WeaponManager _weaponManager;
     [SerializeField] Animator _animator;
     [SerializeField] Transform weaponHolder;
+    [SerializeField] float sprintSpeed = 12f;
     private float horizontal;
     private float vertical;
 
@@ -22,9 +23,9 @@ public class Player : Character
             GameManager.Instance.SpawnWeaponCollector();
         }
 
-        if (Input.GetKeyDown(KeyCode.LeftShift))
+        if (Input.GetKey(KeyCode.LeftShift) && IsGrounded() && speed != sprintSpeed)
         {
-            speed = 12;
+            speed = sprintSpeed;
         }
 
         if (Input.GetKeyUp(KeyCode.LeftShift))
@@ -41,6 +42,16 @@ public class Player : Character
         {
             transform.localScale = new Vector3(1, 1, 1); // Saða bak
             weaponHolder.localScale = new Vector3(1, 1, 1);
+        }
+
+        if(rb.linearVelocityY < 0)
+        {
+            rb.gravityScale = 8;
+        }
+
+        else
+        {
+            rb.gravityScale = 4;
         }
     }
 
@@ -65,7 +76,7 @@ public class Player : Character
 
     public override void Attack()
     {
-        if (Input.GetMouseButton(0) && equippedWeapon != null)
+        if (Input.GetButton("Fire1") && equippedWeapon != null)
         {
             equippedWeapon.Fire(gameObject);
         }

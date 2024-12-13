@@ -27,6 +27,12 @@ MonoBehaviour:
     m_SerializedLabels:
     - AWP
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1ccbb37d326148e489de88b2f1bd0226
+    m_Address: Assets/Prefabs/Weapons/LaserGun.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - LaserGun
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 3f6c51ab28bf7114181dc42b6e67b726
     m_Address: Assets/Prefabs/Weapons/M4A4.prefab
     m_ReadOnly: 0

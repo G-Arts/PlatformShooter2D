@@ -96,7 +96,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7585656155607715703}
-  - component: {fileID: 4576840782010715753}
+  - component: {fileID: 4433542508647756837}
   m_Layer: 0
   m_Name: M4A4
   m_TagString: Untagged
@@ -121,7 +121,7 @@ Transform:
   - {fileID: 5783220319990723929}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4576840782010715753
+--- !u!114 &4433542508647756837
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -130,22 +130,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 1477894080639000070}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9f739d639681bcd418c7ab62ada5ce02, type: 3}
+  m_Script: {fileID: 11500000, guid: af2ca72bf4e7ff34b83f81db1155834d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _weaponRange: 35
+  _weaponRange: 20
   _fireRate: 0.1
-  _weaponDamage: 30
-  _weaponKnockBack: 5
+  _weaponDamage: 10
+  _weaponKnockBack: 3
   gunSpriteRenderer: {fileID: 5176511089086428105}
   gunSpriteNormal: {fileID: 21300000, guid: b511ce4ce8add3b498292308c99cfec3, type: 3}
   gunSpriteEmpty: {fileID: 21300000, guid: cd2eb795682b943498950cbecf9362cf, type: 3}
-  _gunPoint: {fileID: 5669975013073921473}
-  _bulletTrail: {fileID: 3721047678179989268, guid: a2750fc70b8193d4a8186923bca91fcd, type: 3}
+  _gunFirePoint: {fileID: 5669975013073921473}
   magazineSize: 30
   magazine: 30
   reloadTime: 3
-  bulletSpeed: 60
+  _bulletTrail: {fileID: 3721047678179989268, guid: a2750fc70b8193d4a8186923bca91fcd, type: 3}
+  bulletSpeed: 40
 --- !u!1 &7607737379483700708
 GameObject:
   m_ObjectHideFlags: 0

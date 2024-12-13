@@ -96,7 +96,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6906204567791075661}
-  - component: {fileID: 9057138409548086242}
+  - component: {fileID: -6613800284624344633}
   m_Layer: 0
   m_Name: Deagle
   m_TagString: Untagged
@@ -121,7 +121,7 @@ Transform:
   - {fileID: 1047674089147903218}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &9057138409548086242
+--- !u!114 &-6613800284624344633
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -130,22 +130,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 3413023547273266644}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9f739d639681bcd418c7ab62ada5ce02, type: 3}
+  m_Script: {fileID: 11500000, guid: af2ca72bf4e7ff34b83f81db1155834d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _weaponRange: 25
-  _fireRate: 0.3
-  _weaponDamage: 40
-  _weaponKnockBack: 5
+  _weaponRange: 20
+  _fireRate: 0.1
+  _weaponDamage: 10
+  _weaponKnockBack: 3
   gunSpriteRenderer: {fileID: 5750257361857316269}
   gunSpriteNormal: {fileID: 21300000, guid: be0bad5390709e8448cf566da354017a, type: 3}
   gunSpriteEmpty: {fileID: 21300000, guid: acd589c099421bd45808c907604db03c, type: 3}
-  _gunPoint: {fileID: 5817796484346835210}
-  _bulletTrail: {fileID: 3721047678179989268, guid: a2750fc70b8193d4a8186923bca91fcd, type: 3}
-  magazineSize: 7
-  magazine: 7
+  _gunFirePoint: {fileID: 5817796484346835210}
+  magazineSize: 30
+  magazine: 30
   reloadTime: 3
-  bulletSpeed: 60
+  _bulletTrail: {fileID: 3721047678179989268, guid: a2750fc70b8193d4a8186923bca91fcd, type: 3}
+  bulletSpeed: 40
 --- !u!1 &8015679690442296054
 GameObject:
   m_ObjectHideFlags: 0

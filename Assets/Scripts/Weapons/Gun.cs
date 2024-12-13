@@ -1,25 +1,17 @@
 using UnityEngine;
 
-public class Gun : Weapon
+public abstract class Gun : Weapon
 {
     [SerializeField] protected SpriteRenderer gunSpriteRenderer;
     [SerializeField] protected Sprite gunSpriteNormal;
     [SerializeField] protected Sprite gunSpriteEmpty;
-    [SerializeField] protected Transform _gunPoint;
-    [SerializeField] protected GameObject _bulletTrail;
+    [SerializeField] protected Transform _gunFirePoint;
     [SerializeField] protected int magazineSize = 30;
     [SerializeField] protected int magazine = 30;
     [SerializeField] protected float reloadTime = 3f;
-    [SerializeField] protected float bulletSpeed = 40f;
     protected bool isReloding = false;
     protected bool isEmpty = false;
 
-    private void Update()
-    {
-        FollowMouse();
-        Reload();
-        flip();
-    }
 
     protected void Reload()
     {
@@ -43,52 +35,5 @@ public class Gun : Weapon
         if (isEmpty) gunSpriteRenderer.sprite = gunSpriteNormal;
         isEmpty = false;
         Debug.Log("Reload oldu !!!");
-    }
-
-    public override void Fire(GameObject Player)
-    {
-        if (!canIFire()) return;
-
-        lastFireTime = Time.time;
-        magazine--;
-        if (magazine == 0)
-        {
-            isEmpty = true;
-            gunSpriteRenderer.sprite = gunSpriteEmpty;
-        }
-
-        int layerToIgnore = 1 << Player.layer; // Karakterin kendi Layer'ý
-        int layerMask = ~layerToIgnore;
-
-        var hit = Physics2D.Raycast(
-            _gunPoint.position,
-            transform.right,
-            _weaponRange,
-            layerMask);
-
-        var trail = Instantiate(
-            _bulletTrail,
-            _gunPoint.position,
-            transform.rotation);
-
-        var trailScript = trail.GetComponent<BulletTrail>();
-
-        trailScript.SetBulletSpeed(bulletSpeed);
-
-        if (hit.collider != null)
-        {
-            trailScript.SetTargetPosition(hit.point);
-            var target = hit.collider.GetComponent<Target>();
-            target?.getDamage(_weaponDamage);
-
-            Vector3 difference = (new Vector3(hit.point.x, hit.point.y, -1) - transform.position).normalized;
-            Vector3 force = difference * _weaponKnockBack;
-            target?.knockBack(force);
-        }
-        else
-        {
-            var endPosition = _gunPoint.position + transform.right * _weaponRange;
-            trailScript.SetTargetPosition(endPosition);
-        }
     }
 }
