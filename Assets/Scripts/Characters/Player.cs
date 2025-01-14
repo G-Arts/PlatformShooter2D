@@ -1,7 +1,7 @@
-using NUnit.Framework;
+using System.Globalization;
 using UnityEngine;
 
-public class Player : Character
+public class Player : Character, IPlayerBase
 {
     [SerializeField] WeaponManager _weaponManager;
     [SerializeField] Animator _animator;
@@ -9,6 +9,17 @@ public class Player : Character
     [SerializeField] float sprintSpeed = 12f;
     private float horizontal;
     private float vertical;
+
+    PlayerMy clientPlayer;
+
+    private float serverPositionSendTime = 0;
+
+    private Rigidbody2D rigid;
+
+    private void Awake()
+    {
+        rigid = GetComponent<Rigidbody2D>();
+    }
 
     void Update()
     {
@@ -53,6 +64,16 @@ public class Player : Character
         {
             rb.gravityScale = 4;
         }
+
+        serverPositionSendTime += Time.deltaTime;
+
+        if (serverPositionSendTime > .1f)
+        {
+            ColyseusManager.instance.ServerMessageSend("playerPosition", "{\"x\":" + transform.position.x.ToString(CultureInfo.InvariantCulture) + ",\"y\":" + transform.position.y.ToString(CultureInfo.InvariantCulture) + "}");
+            serverPositionSendTime = 0;
+        }
+
+        ColyseusManager.instance.ServerMessageSend("playerVelocity", "{\"x\":" + rigid.linearVelocity.x.ToString(CultureInfo.InvariantCulture) + ",\"y\":" + rigid.linearVelocity.y.ToString(CultureInfo.InvariantCulture) + "}");
     }
 
 
@@ -103,5 +124,19 @@ public class Player : Character
             _weaponManager.SelectWeaponByName(_weaponData.weaponName);
             Destroy(collecter);
         }
+    }
+
+    public void SetCharacter(PlayerMy player, string sessionId)
+    {
+        clientPlayer = player;
+    }
+
+    public void DestroyCharacter()
+    {
+        Destroy(gameObject);
+    }
+    public GameObject GetGameObject()
+    {
+        return gameObject;
     }
 }

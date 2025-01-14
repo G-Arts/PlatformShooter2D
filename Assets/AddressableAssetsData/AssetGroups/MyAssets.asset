@@ -15,6 +15,16 @@ MonoBehaviour:
   m_GroupName: MyAssets
   m_GUID: f5122eb2d71c7b743b29630420d66c44
   m_SerializeEntries:
+  - m_GUID: 2ceb4a16209964c48b47b8ddfae75846
+    m_Address: ClientPlayer
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 64e5bda702bc42d44b900deffbcf7339
+    m_Address: ServerPlayer
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 64faf50ec713218449372e9d2e4f3482
     m_Address: Assets/Prefabs/Target.prefab
     m_ReadOnly: 0

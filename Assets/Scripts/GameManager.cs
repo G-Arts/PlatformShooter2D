@@ -13,6 +13,8 @@ public class GameManager : MonoBehaviour
         }
         Instance = this;
         DontDestroyOnLoad(gameObject);
+
+        Application.runInBackground = true;
     }
 
     [SerializeField]private GameObject WeaponCollecter;
