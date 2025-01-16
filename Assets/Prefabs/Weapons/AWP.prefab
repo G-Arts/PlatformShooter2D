@@ -164,6 +164,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af2ca72bf4e7ff34b83f81db1155834d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _weaponName: AWP
   _weaponRange: 50
   _fireRate: 0.75
   _weaponDamage: 100

@@ -46,6 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af2ca72bf4e7ff34b83f81db1155834d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _weaponName: Glock
   _weaponRange: 20
   _fireRate: 0.2
   _weaponDamage: 15

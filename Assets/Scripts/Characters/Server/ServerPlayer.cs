@@ -1,3 +1,4 @@
+using Colyseus.Schema;
 using NUnit.Framework;
 using System;
 using UnityEngine;
@@ -16,6 +17,7 @@ public class ServerPlayer : Character, IPlayerBase
 
     private Action playerPositionActionX;
     private Action playerPositionActionY;
+    private Action weaponChangeAction;
 
     private void Awake()
     {
@@ -131,8 +133,16 @@ public class ServerPlayer : Character, IPlayerBase
         serverPlayer = player;
 
         playerPositionActionX = serverPlayer.position.OnXChange(OnPositionChange);
+        playerPositionActionY = serverPlayer.position.OnXChange(OnPositionChange);
 
-        
+        weaponChangeAction = serverPlayer.OnWeaponIndexChange(weaponChange);
+
+
+    }
+
+    private void weaponChange(int currentValue, int previousValue)
+    {
+        this._weaponManager.EquipWeaponWIndex(currentValue);
     }
 
     private void FixedUpdate()

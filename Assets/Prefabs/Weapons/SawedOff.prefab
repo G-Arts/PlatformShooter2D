@@ -133,6 +133,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afcb66d31366fa34187e7464302166ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _weaponName: SawedOff
   _weaponRange: 15
   _fireRate: 0.75
   _weaponDamage: 60

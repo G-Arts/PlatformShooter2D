@@ -4,10 +4,12 @@ public abstract class Weapon : MonoBehaviour
 {
     protected float lastFireTime = 0;
 
+    [SerializeField] protected string _weaponName = "";
     [SerializeField] protected float _weaponRange = 20f;
     [SerializeField] protected float _fireRate = 0.1f;
     [SerializeField] protected float _weaponDamage = 10f;
     [SerializeField] protected float _weaponKnockBack = 3f;
+
 
     public abstract void Fire(GameObject Player);
 

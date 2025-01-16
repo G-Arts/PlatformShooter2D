@@ -71,9 +71,11 @@ public class Player : Character, IPlayerBase
         {
             ColyseusManager.instance.ServerMessageSend("playerPosition", "{\"x\":" + transform.position.x.ToString(CultureInfo.InvariantCulture) + ",\"y\":" + transform.position.y.ToString(CultureInfo.InvariantCulture) + "}");
             serverPositionSendTime = 0;
+            
         }
 
         ColyseusManager.instance.ServerMessageSend("playerVelocity", "{\"x\":" + rigid.linearVelocity.x.ToString(CultureInfo.InvariantCulture) + ",\"y\":" + rigid.linearVelocity.y.ToString(CultureInfo.InvariantCulture) + "}");
+        
     }
 
 

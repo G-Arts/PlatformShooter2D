@@ -133,6 +133,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af2ca72bf4e7ff34b83f81db1155834d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _weaponName: M4A4
   _weaponRange: 35
   _fireRate: 0.1
   _weaponDamage: 25

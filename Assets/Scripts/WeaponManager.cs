@@ -7,10 +7,10 @@ public class WeaponManager : MonoBehaviour
 {
     [SerializeField] private Character character;
     [SerializeField] private WeaponDatabase weaponDatabase;
-    [SerializeField] private HotBarController hotBarController;
+    //[SerializeField] private HotBarController hotBarController;
     private GameObject currentWeapon;
     private Dictionary<int, string> weaponMapping;
-    private int currentIndex = 0;
+    public int currentIndex = 0;
     private bool isLoading = false;
 
     private void Start()
@@ -61,20 +61,31 @@ public class WeaponManager : MonoBehaviour
     private void UpdateHotBarIndex(int move)
     {
         currentIndex = (currentIndex + move + weaponMapping.Count) % weaponMapping.Count;
-        hotBarController.selectItem(currentIndex);
+        //hotBarController.selectItem(currentIndex);
+        HotBarController.instance.selectItem(currentIndex);
     }
 
     private void SelectWeaponByIndex(int index)
     {
-        if (weaponMapping.TryGetValue(index, out string weaponKey))
-        {
-            EquipWeapon(weaponKey);
-            hotBarController.selectItem(index);
-        }
+
+        if(EquipWeaponWIndex(index)) HotBarController.instance.selectItem(index);
         else
         {
             Debug.LogWarning($"Index {index} için bir silah bulunamadý.");
+            return;
         }
+        currentIndex = index;
+        ColyseusManager.instance.ServerMessageSend("weaponIndex", currentIndex.ToString());
+    }
+
+    public bool EquipWeaponWIndex(int index)
+    {
+        if (weaponMapping.TryGetValue(index, out string weaponKey))
+        {
+            EquipWeapon(weaponKey);
+            return true;
+        }
+        return false;
     }
 
     public void SelectWeaponByName(string name)
@@ -88,11 +99,13 @@ public class WeaponManager : MonoBehaviour
 
             if (weaponIndex >= 0)
             {
-                // Hotbar'da ilgili silahý seç ve vurgula
-                hotBarController.selectItem(weaponIndex);
-
                 // Silahý kuþan
                 EquipWeapon(weapon.weaponName);
+
+                // Hotbar'da ilgili silahý seç ve vurgula
+                //hotBarController.selectItem(weaponIndex);
+
+                HotBarController.instance.selectItem(weaponIndex);
             }
             else
             {
