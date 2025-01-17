@@ -75,7 +75,9 @@ public class Player : Character, IPlayerBase
         }
 
         ColyseusManager.instance.ServerMessageSend("playerVelocity", "{\"x\":" + rigid.linearVelocity.x.ToString(CultureInfo.InvariantCulture) + ",\"y\":" + rigid.linearVelocity.y.ToString(CultureInfo.InvariantCulture) + "}");
-        
+        ColyseusManager.instance.ServerMessageSend("weaponRotX", this._weaponManager.getWeaponRot().x.ToString());
+        ColyseusManager.instance.ServerMessageSend("weaponRotY", this._weaponManager.getWeaponRot().y.ToString());
+        ColyseusManager.instance.ServerMessageSend("weaponRotZ", this._weaponManager.getWeaponRot().z.ToString());
     }
 
 

@@ -333,14 +333,14 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4735796028362934383}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e32d63b495cff0c4db02cdb92977ec5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  character: {fileID: 0}
+  character: {fileID: 1141074369342749437}
   weaponDatabase: {fileID: 11400000, guid: 6df01c2a2a2fe574cbdef6a9288da373, type: 2}
-  hotBarController: {fileID: 0}
+  currentIndex: 0
 --- !u!1 &5958708048339980624
 GameObject:
   m_ObjectHideFlags: 0

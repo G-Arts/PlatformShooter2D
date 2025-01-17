@@ -13,16 +13,17 @@ public class ServerPlayer : Character, IPlayerBase
     private float vertical;
 
     PlayerMy serverPlayer;
-    private Rigidbody2D rigid;
 
     private Action playerPositionActionX;
     private Action playerPositionActionY;
     private Action weaponChangeAction;
+    private Action weaponRotChangeAction;
 
     private void Awake()
     {
-        rigid = GetComponent<Rigidbody2D>();
+        _weaponManager.setServer();
     }
+
     void Update()
     {
         /*
@@ -133,12 +134,19 @@ public class ServerPlayer : Character, IPlayerBase
         serverPlayer = player;
 
         playerPositionActionX = serverPlayer.position.OnXChange(OnPositionChange);
-        playerPositionActionY = serverPlayer.position.OnXChange(OnPositionChange);
+        playerPositionActionY = serverPlayer.position.OnYChange(OnPositionChange);
 
         weaponChangeAction = serverPlayer.OnWeaponIndexChange(weaponChange);
 
+        weaponRotChangeAction = serverPlayer.weaponRot.OnChange(weaponRotChange);
 
     }
+
+    private void weaponRotChange()
+    {
+        this._weaponManager.setWeaponRot(serverPlayer.weaponRot.x,serverPlayer.weaponRot.y,serverPlayer.weaponRot.z);
+    }
+
 
     private void weaponChange(int currentValue, int previousValue)
     {
@@ -147,22 +155,24 @@ public class ServerPlayer : Character, IPlayerBase
 
     private void FixedUpdate()
     {
-        rigid.linearVelocity = new Vector2(serverPlayer.velocity.x, serverPlayer.velocity.y);
-        _animator.SetFloat("speed", Mathf.Abs(rigid.linearVelocityX));
+        rb.linearVelocity = new Vector2(serverPlayer.velocity.x, serverPlayer.velocity.y);
+        _animator.SetFloat("speed", Mathf.Abs(rb.linearVelocityX));
 
-        if (rigid.linearVelocityX < 0)
+        if (rb.linearVelocityX < 0)
         {
             transform.localScale = new Vector3(-1, 1, 1); // Sola bak
+            weaponHolder.localScale = new Vector3(-1, 1, 1);
         }
-        else if(rigid.linearVelocityX > 0)
+        else if(rb.linearVelocityX > 0)
         {
             transform.localScale = new Vector3(1, 1, 1); // Saða bak
+            weaponHolder.localScale = new Vector3(1, 1, 1);
         }
     }
 
     public void OnPositionChange(float currentValue, float previousValue)
     {
-        rigid.position = new Vector2(serverPlayer.position.x, serverPlayer.position.y);
+        rb.position = new Vector2(serverPlayer.position.x, serverPlayer.position.y);
     }
 
     public void DestroyCharacter()

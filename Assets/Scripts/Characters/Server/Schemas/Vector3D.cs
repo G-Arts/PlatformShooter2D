@@ -11,16 +11,19 @@ using Action = System.Action;
 using UnityEngine.Scripting;
 #endif
 
-public partial class VectorS : Schema {
+public partial class Vector3D : Schema {
 #if UNITY_5_3_OR_NEWER
 [Preserve] 
 #endif
-public VectorS() { }
+public Vector3D() { }
 	[Type(0, "float32")]
 	public float x = default(float);
 
 	[Type(1, "float32")]
 	public float y = default(float);
+
+	[Type(2, "float32")]
+	public float z = default(float);
 
 	/*
 	 * Support for individual property change callbacks below...
@@ -50,10 +53,23 @@ public VectorS() { }
 		};
 	}
 
+	protected event PropertyChangeHandler<float> __zChange;
+	public Action OnZChange(PropertyChangeHandler<float> __handler, bool __immediate = true) {
+		if (__callbacks == null) { __callbacks = new SchemaCallbacks(); }
+		__callbacks.AddPropertyCallback(nameof(this.z));
+		__zChange += __handler;
+		if (__immediate && this.z != default(float)) { __handler(this.z, default(float)); }
+		return () => {
+			__callbacks.RemovePropertyCallback(nameof(z));
+			__zChange -= __handler;
+		};
+	}
+
 	protected override void TriggerFieldChange(DataChange change) {
 		switch (change.Field) {
 			case nameof(x): __xChange?.Invoke((float) change.Value, (float) change.PreviousValue); break;
 			case nameof(y): __yChange?.Invoke((float) change.Value, (float) change.PreviousValue); break;
+			case nameof(z): __zChange?.Invoke((float) change.Value, (float) change.PreviousValue); break;
 			default: break;
 		}
 	}

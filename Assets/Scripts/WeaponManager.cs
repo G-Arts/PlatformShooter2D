@@ -12,6 +12,7 @@ public class WeaponManager : MonoBehaviour
     private Dictionary<int, string> weaponMapping;
     public int currentIndex = 0;
     private bool isLoading = false;
+    private bool isServer = false;
 
     private void Start()
     {
@@ -39,6 +40,7 @@ public class WeaponManager : MonoBehaviour
 
     private void HandleWeaponScroll()
     {
+        if (isServer) return;
         if (Input.mouseScrollDelta.y != 0)
         {
             UpdateHotBarIndex((int)Input.mouseScrollDelta.y);
@@ -48,6 +50,7 @@ public class WeaponManager : MonoBehaviour
 
     private void HandleHotBarKeyInput()
     {
+        if(isServer) return;
         for (int i = 0; i < weaponMapping.Count; i++)
         {
             if (Input.GetKeyDown(KeyCode.Alpha1 + i))
@@ -82,6 +85,7 @@ public class WeaponManager : MonoBehaviour
     {
         if (weaponMapping.TryGetValue(index, out string weaponKey))
         {
+            Debug.Log("WIndex Silah kuþanýldý!!!!");
             EquipWeapon(weaponKey);
             return true;
         }
@@ -118,6 +122,22 @@ public class WeaponManager : MonoBehaviour
         }
     }
 
+    public void setWeaponRot(float x,float y,float z)
+    {
+        Quaternion rot = Quaternion.Euler(x,y,z);
+        if (rot == null) return;
+        currentWeapon.transform.localRotation = rot;
+    }
+
+    public Vector3 getWeaponRot()
+    {
+        if(currentWeapon == null)return Vector3.zero;
+
+        Vector3 _wepRot = currentWeapon.transform.localRotation.eulerAngles;
+
+        return _wepRot;
+    }
+
 
     public void EquipWeapon(string weaponKey)
     {
@@ -137,8 +157,12 @@ public class WeaponManager : MonoBehaviour
             }
 
             currentWeapon = Instantiate(handle.Result, transform.position, transform.rotation, transform);
-            character.EquipWeapon(currentWeapon.GetComponent<Weapon>());
+            Weapon _weapon = currentWeapon.GetComponent<Weapon>();
+            _weapon.setIsServer(isServer);
+            character.EquipWeapon(_weapon);
             currentWeapon.transform.localRotation = Quaternion.identity;
+
+            Debug.Log(currentWeapon.name);
         }
         else
         {
@@ -146,5 +170,10 @@ public class WeaponManager : MonoBehaviour
         }
 
         isLoading = false;
+    }
+
+    public void setServer()
+    {
+        isServer = true;
     }
 }
